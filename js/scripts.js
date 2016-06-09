@@ -24,14 +24,16 @@ var processesNumber = function(numberString) {
   finalOutput += singleDigit;
 
   if (numberArray.length >= 2) {
-    processSecondDigit(numberArray);
+    var secondOutput = processSecondDigit(numberArray);
+    finalOutput = secondOutput + singleDigit;
   };
-  if (numberArray.length >= 3) {
-    processThirdDigit(numberArray);
-  };
-  if (numberArray.length === 4) {
-    processFourthDigit(numberArray);
-  };
+  // if (numberArray.length >= 3) {
+  //   var thirdOutput = processThirdDigit(numberArray);
+  // };
+  // if (numberArray.length === 4) {
+  //   var fourthOutput = processFourthDigit(numberArray);
+  // };
+
   return finalOutput;
   // if (numberArray.length === 4) {
   //   if (numberArray[3] > 0 &&  numberArray[3] <= 3) {
@@ -43,12 +45,12 @@ var processesNumber = function(numberString) {
 var processSingleDigit = function(numArrayInput) {
   numArrayInput.reverse();
   var output = "";
-  var singleDigit = numArrayInput[0];
-  var v = singleDigit - 5;
-  if (singleDigit === 9 ) {
+  var digit = numArrayInput[0];
+  var v = digit - 5;
+  if (digit === 9 ) {
     output = "IX";
     return output;
-  }
+  };
   if (v >= -1) {
     output = output + "V";
   };
@@ -56,8 +58,42 @@ var processSingleDigit = function(numArrayInput) {
     output = "I" + output;
     v = 0;
   };
-  for (index = 0; index < v; index++) {
-    output = output + "I";
+  if (v < 0) {
+    for (index = 5; index > Math.abs(v); index-=1) {
+      output = output + "I";
+    };
+  } else {
+    for (index = 0; index < v; index++) {
+      output = output + "I";
+    };
+  };
+  console.log(output);
+  return output;
+};
+
+var processSecondDigit = function(numArrayInput2) {
+  var output = "";
+  var digit = numArrayInput2[1];
+  var v = digit - 5;
+  if (digit === 9 ) {
+    output = "XC";
+    return output;
+  };
+  if (v >= -1) {
+    output = output + "L"; //  adds 5 for five or greater
+  };
+  if (v === -1) {
+    output = "X" + output; // 4 event
+    v = 0;
+  };
+  if (v < 0) {
+    for (index = 5; index > Math.abs(v); index-=1) {
+      output = output + "X";
+    };
+  } else {
+    for (index = 0; index < v; index++) {
+      output = output + "X";
+    };
   };
   return output;
 };
