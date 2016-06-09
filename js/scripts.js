@@ -31,9 +31,10 @@ var processesNumber = function(numberString) {
     var thirdOutput = processThirdDigit(numberArray);
     finalOutput = thirdOutput + finalOutput;
   };
-  // if (numberArray.length === 4) {
-  //   var fourthOutput = processFourthDigit(numberArray);
-  // };
+  if (numberArray.length === 4) {
+    var fourthOutput = processFourthDigit(numberArray);
+    finalOutput = fourthOutput + finalOutput;
+  };
 
   return finalOutput;
   // if (numberArray.length === 4) {
@@ -126,6 +127,22 @@ var processThirdDigit = function(numArrayInput) {
   return output;
 };
 
+var processFourthDigit = function(numArrayInput) {
+  var output = "";
+  var digit = numArrayInput[3];
+  var v = digit - 5;
+
+  if (v < 0) {
+    for (index = 5; index > Math.abs(v); index-=1) {
+      output = output + "M";
+    };
+  } else {
+    for (index = 0; index < v; index++) {
+      output = output + "M";
+    };
+  };
+  return output;
+};
 
 
 
