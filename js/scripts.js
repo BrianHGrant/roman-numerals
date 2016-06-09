@@ -25,11 +25,12 @@ var processesNumber = function(numberString) {
 
   if (numberArray.length >= 2) {
     var secondOutput = processSecondDigit(numberArray);
-    finalOutput = secondOutput + singleDigit;
+    finalOutput = secondOutput + finalOutput;
   };
-  // if (numberArray.length >= 3) {
-  //   var thirdOutput = processThirdDigit(numberArray);
-  // };
+  if (numberArray.length >= 3) {
+    var thirdOutput = processThirdDigit(numberArray);
+    finalOutput = thirdOutput + finalOutput;
+  };
   // if (numberArray.length === 4) {
   //   var fourthOutput = processFourthDigit(numberArray);
   // };
@@ -71,9 +72,9 @@ var processSingleDigit = function(numArrayInput) {
   return output;
 };
 
-var processSecondDigit = function(numArrayInput2) {
+var processSecondDigit = function(numArrayInput) {
   var output = "";
-  var digit = numArrayInput2[1];
+  var digit = numArrayInput[1];
   var v = digit - 5;
   if (digit === 9 ) {
     output = "XC";
@@ -98,6 +99,32 @@ var processSecondDigit = function(numArrayInput2) {
   return output;
 };
 
+var processThirdDigit = function(numArrayInput) {
+  var output = "";
+  var digit = numArrayInput[2];
+  var v = digit - 5;
+  if (digit === 9 ) {
+    output = "CM";
+    return output;
+  };
+  if (v >= -1) {
+    output = output + "D"; //  adds 5 for five or greater
+  };
+  if (v === -1) {
+    output = "C" + output; // 4 event
+    v = 0;
+  };
+  if (v < 0) {
+    for (index = 5; index > Math.abs(v); index-=1) {
+      output = output + "C";
+    };
+  } else {
+    for (index = 0; index < v; index++) {
+      output = output + "C";
+    };
+  };
+  return output;
+};
 
 
 
