@@ -7,7 +7,7 @@ var validateNumber = function(numberString) {
     isNumberValid = false;
     return "That was not a valid input."
   } else {
-    return "Here is your Roman Numeralated Number!"
+    return "Here is your Roman Numeralated Number: "
   };
 };
 
@@ -37,11 +37,6 @@ var processesNumber = function(numberString) {
   };
 
   return finalOutput;
-  // if (numberArray.length === 4) {
-  //   if (numberArray[3] > 0 &&  numberArray[3] <= 3) {
-  //     numberArray[3] = "I"
-  //   }
-  // };
 };
 
 var processSingleDigit = function(numArrayInput) {
@@ -69,7 +64,6 @@ var processSingleDigit = function(numArrayInput) {
       output = output + "I";
     };
   };
-  console.log(output);
   return output;
 };
 
@@ -153,9 +147,9 @@ $(document).ready(function() {
 
     var inputNumber = $("input#inputNumber").val();
     var validNumber = validateNumber(inputNumber);
-    $(".output").text(validNumber);
     var finalNumeral = processesNumber(inputNumber);
-    console.log(finalNumeral);
+    $(".output").text(validNumber + finalNumeral);
+
     event.preventDefault();
   });
 });
